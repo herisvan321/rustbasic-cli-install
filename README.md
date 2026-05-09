@@ -6,7 +6,7 @@
 Repository ini berisi skrip instalasi otomatis untuk **RustBasic CLI**, sebuah framework pengembangan aplikasi berbasis Rust yang dirancang untuk kemudahan dan kecepatan.
 
 ## 🚀 Fitur Script
-- **Smart Installer**: Mendeteksi secara otomatis apakah Anda berada di direktori source code `rustbasic`. Jika iya, ia akan menginstal versi lokal; jika tidak, ia akan menginstal versi terbaru dari GitHub.
+- **Smart Installer**: Menangani proses `cargo install` langsung dari repository GitHub.
 - **Deteksi OS Otomatis**: Mendeteksi sistem operasi (Windows, macOS, Linux) dan menyesuaikan langkah instalasi.
 - **Global Alias**: Mendaftarkan perintah `rustbasic` secara global sehingga Anda dapat langsung menggunakannya tanpa mengetik nama executable aslinya.
 - **Dependency Check**: Memastikan tools pendukung seperti `cargo-watch` terinstall.

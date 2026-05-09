@@ -29,24 +29,8 @@ if (Get-Command rustbasic-cli -ErrorAction SilentlyContinue) {
 }
 
 # --- INSTALASI ---
-$ProjectDir = ""
-if (Test-Path "Cargo.toml" -PathType Leaf) {
-    $content = Get-Content "Cargo.toml" -Raw
-    if ($content -match "name = `"rustbasic`"") { $ProjectDir = "." }
-}
-
-if ($ProjectDir -eq "" -and (Test-Path "../rustbasic/rustbasic/Cargo.toml" -PathType Leaf)) {
-    $content = Get-Content "../rustbasic/rustbasic/Cargo.toml" -Raw
-    if ($content -match "name = `"rustbasic`"") { $ProjectDir = "../rustbasic/rustbasic" }
-}
-
-if ($ProjectDir -ne "") {
-    Write-Host "`n⏳ Langkah 1/2: Membangun dari folder lokal ($ProjectDir)..." -ForegroundColor Blue
-    cargo install --path "$ProjectDir" --bin rustbasic-cli --force
-} else {
-    Write-Host "`n⏳ Langkah 1/2: Membangun dari GitHub..." -ForegroundColor Blue
-    cargo install --git https://github.com/herisvan321/rustbasic --bin rustbasic-cli --force
-}
+Write-Host "`n⏳ Langkah 1/2: Membangun dari GitHub (mungkin butuh waktu)..." -ForegroundColor Blue
+cargo install --git https://github.com/herisvan321/rustbasic --bin rustbasic-cli --force
 
 # --- ALIAS ---
 Write-Host "⏳ Langkah 2/2: Mendaftarkan alias 'rustbasic'..." -ForegroundColor Blue
