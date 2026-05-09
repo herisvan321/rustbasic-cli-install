@@ -57,7 +57,7 @@ rustbasic --help
 ```
 
 > [!TIP]
-> Jika perintah `rustbasic` tidak ditemukan setelah instalasi, silakan restart terminal Anda atau jalankan `source ~/.zshrc` (macOS/Linux) atau `. $PROFILE` (Windows).
+> Jika perintah `rustbasic` tidak ditemukan setelah instalasi, silakan restart terminal Anda atau jalankan `source ~/.zshrc` atau `source ~/.bashrc` (macOS/Linux) atau `. $PROFILE` (Windows).
 
 ---
 
