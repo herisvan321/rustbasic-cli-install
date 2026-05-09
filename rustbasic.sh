@@ -62,15 +62,28 @@ if command -v rustbasic-cli &> /dev/null || [ -f "/usr/local/bin/rustbasic" ]; t
 fi
 
 # --- INSTALASI ---
-echo -e "${BLUE}⏳ Langkah 1/3: Membangun dari GitHub...${NC}"
-cargo install --git https://github.com/herisvan321/rustbasic --bin rustbasic-cli --force
+# Deteksi folder project rustbasic
+PROJECT_DIR=""
+if [ -f "Cargo.toml" ] && grep -q "name = \"rustbasic\"" "Cargo.toml"; then
+    PROJECT_DIR="."
+elif [ -f "../rustbasic/rustbasic/Cargo.toml" ] && grep -q "name = \"rustbasic\"" "../rustbasic/rustbasic/Cargo.toml"; then
+    PROJECT_DIR="../rustbasic/rustbasic"
+fi
+
+if [ -n "$PROJECT_DIR" ]; then
+    echo -e "${BLUE}⏳ Langkah 1/3: Membangun dari folder lokal ($PROJECT_DIR)...${NC}"
+    cargo install --path "$PROJECT_DIR" --bin rustbasic-cli --force
+else
+    echo -e "${BLUE}⏳ Langkah 1/3: Membangun dari GitHub...${NC}"
+    cargo install --git https://github.com/herisvan321/rustbasic --bin rustbasic-cli --force
+fi
 
 echo -e "${BLUE}⏳ Langkah 2/3: Mendaftarkan perintah global...${NC}"
-# Symlink untuk akses instan
+# Symlink untuk akses instan (opsional, jika punya izin)
 if [ -w "/usr/local/bin" ]; then
-    ln -sf "$HOME/.cargo/bin/rustbasic-cli" /usr/local/bin/rustbasic
+    ln -sf "$HOME/.cargo/bin/rustbasic-cli" /usr/local/bin/rustbasic || true
 else
-    sudo ln -sf "$HOME/.cargo/bin/rustbasic-cli" /usr/local/bin/rustbasic
+    echo -e "${BLUE}💡 Info: Melewati pembuatan symlink di /usr/local/bin (izin ditolak).${NC}"
 fi
 
 # Alias untuk permanen
