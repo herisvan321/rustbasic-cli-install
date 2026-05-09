@@ -49,7 +49,11 @@ if command -v rustbasic-cli &> /dev/null || [ -f "/usr/local/bin/rustbasic" ]; t
     echo "1) Reinstall"
     echo "2) Uninstall"
     echo "3) Exit"
-    read -p "Pilihan: " choice < /dev/tty
+    if [ -t 0 ]; then
+        read -p "Pilihan: " choice
+    else
+        read -p "Pilihan: " choice < /dev/tty
+    fi
     case $choice in
         1) uninstall_rustbasic ;;
         2) uninstall_rustbasic; exit 0 ;;

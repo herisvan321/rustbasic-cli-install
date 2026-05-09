@@ -20,7 +20,7 @@ Repository ini berisi skrip instalasi otomatis untuk **RustBasic CLI**, sebuah f
 Gunakan `curl` untuk menjalankan script langsung dari terminal:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/herisvan321/rustbasic-cli-install/main/rustbasic.sh | bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/herisvan321/rustbasic-cli-install/main/rustbasic.sh)"
 ```
 
 *Atau unduh dan jalankan secara manual:*
