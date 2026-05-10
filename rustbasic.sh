@@ -78,10 +78,58 @@ if ! grep -q "alias rustbasic=" "$SHELL_CONFIG"; then
     echo "alias rustbasic='rustbasic-cli'" >> "$SHELL_CONFIG"
 fi
 
-echo -e "${BLUE}⏳ Langkah 3/3: Cek dependency...${NC}"
+echo -e "${BLUE}⏳ Langkah 3/4: Cek dependency...${NC}"
 command -v cargo-watch &> /dev/null || cargo install cargo-watch
 
 echo -e "\n${GREEN}${BOLD}✨ RUSTBASIC BERHASIL TERPASANG! ✨${NC}"
-echo -e "Gunakan perintah: ${BOLD}rustbasic${NC}"
 echo -e "Konfigurasi disimpan di: $SHELL_CONFIG"
-echo -e "Silakan jalankan 'source $SHELL_CONFIG' jika perintah belum muncul."
+
+# --- BUAT PROJECT BARU (OPSIONAL) ---
+echo ""
+echo -e "${CYAN}${BOLD}📦 Langkah 4/4: Buat project baru?${NC}"
+if [ -t 0 ]; then
+    read -p "Ingin membuat project baru sekarang? (y/n): " create_project
+else
+    read -p "Ingin membuat project baru sekarang? (y/n): " create_project < /dev/tty
+fi
+
+if [ "$create_project" == "y" ] || [ "$create_project" == "Y" ]; then
+    if [ -t 0 ]; then
+        read -p "Nama project: " project_name
+    else
+        read -p "Nama project: " project_name < /dev/tty
+    fi
+
+    if [ -z "$project_name" ]; then
+        echo -e "${RED}❌ Nama project tidak boleh kosong.${NC}"
+    elif [ -d "$project_name" ]; then
+        echo -e "${RED}❌ Folder '$project_name' sudah ada!${NC}"
+    else
+        echo -e "${BLUE}⏳ Mengkloning template project...${NC}"
+        git clone https://github.com/herisvan321/rustbasic "$project_name"
+        rm -rf "$project_name/.git"
+
+        # Copy .env.example menjadi .env
+        if [ -f "$project_name/.env.example" ]; then
+            cp "$project_name/.env.example" "$project_name/.env"
+            echo -e "   ${BLUE}📋${NC} .env.example → .env"
+        fi
+
+        # Generate APP_KEY
+        if [ -f "$project_name/.env" ]; then
+            echo -e "   ${BLUE}🔑${NC} Generating APP_KEY..."
+            cd "$project_name"
+            rustbasic-cli key:generate 2>/dev/null || "$HOME/.cargo/bin/rustbasic-cli" key:generate 2>/dev/null || true
+            cd ..
+        fi
+
+        echo -e "\n${GREEN}${BOLD}✅ Project '$project_name' berhasil dibuat!${NC}"
+        echo -e "   cd $project_name"
+        echo -e "   rustbasic serve"
+    fi
+else
+    echo -e "\n${GREEN}Gunakan perintah berikut untuk membuat project baru:${NC}"
+    echo -e "   ${BOLD}rustbasic new \<nama_project\>${NC}"
+fi
+
+echo -e "\nSilakan jalankan '${BOLD}source $SHELL_CONFIG${NC}' jika perintah belum muncul."
