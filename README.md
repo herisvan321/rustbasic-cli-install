@@ -1,73 +1,78 @@
-# RustBasic CLI Installer
+# 🚀 RustBasic Smart Installer
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Rust](https://img.shields.io/badge/rust-v1.70%2B-orange.svg)](https://www.rust-lang.org/)
+[![CLI](https://img.shields.io/badge/UI-Elegant-purple.svg)](#)
 
-Repository ini berisi skrip instalasi otomatis untuk **RustBasic CLI**, sebuah framework pengembangan aplikasi berbasis Rust yang dirancang untuk kemudahan dan kecepatan.
-
-## 🚀 Fitur Script
-- **Smart Installer**: Menangani proses `cargo install` langsung dari repository GitHub.
-- **Deteksi OS Otomatis**: Mendeteksi sistem operasi (Windows, macOS, Linux) dan menyesuaikan langkah instalasi.
-- **Global Alias**: Mendaftarkan perintah `rustbasic` secara global sehingga Anda dapat langsung menggunakannya tanpa mengetik nama executable aslinya.
-- **Dependency Check**: Memastikan tools pendukung seperti `cargo-watch` terinstall.
-- **Management**: Menu interaktif untuk Reinstall atau Uninstall dengan mudah.
+Solusi instalasi satu baris yang cerdas untuk **RustBasic Framework**. Didesain untuk memberikan pengalaman developer yang mulus, cepat, dan elegan di berbagai platform.
 
 ---
 
-## 🛠️ Cara Instalasi
+## ✨ Kenapa Memilih Smart Installer?
 
-### macOS & Linux
-Gunakan `curl` untuk menjalankan script langsung dari terminal:
+*   **Zero Configuration**: Menangani semua proses kompilasi dan registrasi perintah global secara otomatis.
+*   **Multi-Platform Support**: Skrip cerdas untuk macOS, Linux, dan Windows (PowerShell).
+*   **Elegant UI**: Antarmuka CLI yang bersih dengan indikator langkah yang intuitif.
+*   **Dependency Management**: Otomatis memastikan `cargo-watch` terpasang untuk fitur *realtime development*.
+*   **Interactive Menu**: Kemudahan untuk melakukan *reinstall* atau *uninstall* hanya dengan satu perintah.
+*   **Post-Install Workflow**: Opsi untuk langsung membuat project baru setelah instalasi selesai.
 
+---
+
+## 🛠️ Instalasi Cepat
+
+Pilih sistem operasi Anda dan jalankan perintah di bawah ini di terminal:
+
+### 🍎 macOS & 🐧 Linux
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/herisvan321/rustbasic-cli-install/main/rustbasic.sh)"
 ```
 
-*Atau unduh dan jalankan secara manual:*
-1. Download `rustbasic.sh`.
-2. Beri izin eksekusi: `chmod +x rustbasic.sh`.
-3. Jalankan: `./rustbasic.sh`.
-
-### Windows (PowerShell)
-Buka PowerShell sebagai Administrator dan jalankan perintah berikut:
-
+### 🪟 Windows (PowerShell)
 ```powershell
 powershell -ExecutionPolicy Bypass -Command "iwr -useb https://raw.githubusercontent.com/herisvan321/rustbasic-cli-install/main/rustbasic.ps1 | iex"
 ```
 
-*Atau unduh dan jalankan secara manual:*
-1. Download `rustbasic.ps1`.
-2. Jalankan di PowerShell: `.\rustbasic.ps1`.
-
 ---
 
-## 📖 Penggunaan Awal
+## 🚀 Memulai Project Pertama
 
-Setelah instalasi selesai, Anda dapat mulai menggunakan perintah `rustbasic`:
+Setelah instalasi sukses, Anda dapat langsung membuat aplikasi Rust pertama Anda:
 
 ```bash
-# Membuat project baru
-rustbasic new my-awesome-app
+# 1. Buat project baru (atau gunakan menu interaktif di installer)
+rustbasic new my-app
 
-# Menjalankan server development
+# 2. Masuk ke direktori
+cd my-app
+
+# 3. Jalankan server dengan fitur hot-reload
 rustbasic serve
-
-# Melihat bantuan/daftar perintah
-rustbasic
 ```
-
-> [!TIP]
-> Jika perintah `rustbasic` tidak ditemukan setelah instalasi, silakan restart terminal Anda atau jalankan `source ~/.zshrc` atau `source ~/.bashrc` (macOS/Linux) atau `. $PROFILE` (Windows).
 
 ---
 
-## 🗑️ Uninstall
-Untuk menghapus RustBasic dari sistem Anda, cukup jalankan kembali script instalasi dan pilih opsi **Uninstall (2)** saat menu muncul.
+## 🔧 Perintah Tersedia
+
+| Perintah | Deskripsi |
+| :--- | :--- |
+| `rustbasic new <name>` | Membuat struktur project RustBasic baru |
+| `rustbasic serve` | Menjalankan server development (realtime) |
+| `rustbasic key:generate` | Menghasilkan APP_KEY baru di file .env |
+| `rustbasic --help` | Melihat daftar perintah lengkap |
+
+---
+
+## 🗑️ Uninstall & Maintenance
+
+Untuk memperbarui atau menghapus RustBasic, cukup jalankan kembali skrip instalasi di atas. Script akan mendeteksi instalasi yang ada dan menampilkan menu pilihan:
+1. **Reinstall**: Memperbarui ke versi terbaru dari GitHub.
+2. **Uninstall**: Menghapus binary dan alias dari sistem secara bersih.
 
 ---
 
 ## 📄 Lisensi
-Project ini dilisensikan di bawah MIT License. Lihat file [LICENSE](LICENSE) untuk informasi lebih lanjut.
+Didistribusikan di bawah **MIT License**. Lihat `LICENSE` untuk detail selengkapnya.
 
 ---
-Created with ❤️ by [herisvan321](https://github.com/herisvan321)
+Crafted with ✨ by [herisvan321](https://github.com/herisvan321)
